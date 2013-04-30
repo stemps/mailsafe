@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["simon@simon-stemplinger.com"]
   spec.description   = 'Safe emailing for Rails'
   spec.summary       = 'Safe emailing for Rails - do not send emails to real users from development or staging environments.'
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/stemps/mailsafe"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", "~> 2.13.0"
 end
