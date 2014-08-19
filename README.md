@@ -26,11 +26,11 @@ end
 The email subjects will be delivered to your account and prefixed with the original receiver in square brackets.
 
 
-You can send emails to the intended recipients but only within your company (e.g. helpful for a staging environment)
+You can send emails to the intended recipients but only to a whitelist of receipient domains (e.g. helpful for a staging environment where you want to send emails to your company's and your client's domain)
 
 ```ruby
 Mailsafe.setup do |config|
-  config.allowed_domain = "devco.com"
+  config.allowed_domain = "devco.com, clientco.com"
 end
 ```
 

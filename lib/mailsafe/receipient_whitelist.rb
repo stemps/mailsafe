@@ -1,3 +1,5 @@
+require 'mailsafe/receipient_whitelist'
+
 module Mailsafe
   class ReceipientWhitelist
     def self.filter_receipient_domain(message)
@@ -13,9 +15,15 @@ module Mailsafe
       end
     end
 
-    def self.email_has_domain?(email, domain)
-      email_domain = email.split("@").second
-      email_domain.downcase == domain.downcase
+    def self.email_has_domain?(email, allowed_domain_config)
+      allowed_domains = allowed_domain_config.split(',').map(&:strip).map(&:downcase)
+      email_domain = email.split("@")[1]
+
+      if email_domain.present?
+        allowed_domains.include? email_domain.downcase
+      else
+        false
+      end
     end
   end
 end

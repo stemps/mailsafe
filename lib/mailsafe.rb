@@ -14,8 +14,9 @@ module Mailsafe
   mattr_accessor :prefix_email_subject_with_rails_env
   @@prefix_email_subject_with_rails_env = false
 
-  # specify a domain that is allowed to receive emails all emails to other domains are dropped. 
-  # If empty, all emails are allowed to all domains
+  # specify one or more domains (comma separated) that are allowed to receive emails all emails
+  # to other domains are dropped.  If empty, all emails are allowed to all
+  # domains
   mattr_accessor :allowed_domain
   @@allowed_domain = nil
 
