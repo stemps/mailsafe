@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/stemps/mailsafe.png)](https://codeclimate.com/github/stemps/mailsafe)
+[![Build Status](https://travis-ci.org/stemps/mailsafe.svg)](https://travis-ci.org/stemps/mailsafe)
 # Mailsafe
 
 Safe emailing for Rails. Prevents you from sending emails to real customers from non-production environments. You can choose to either re-route all emails to a single developer account or allow only recipients of your own domain.
