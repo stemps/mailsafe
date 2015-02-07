@@ -3,7 +3,7 @@ require "mailsafe/version"
 require "mailsafe/railtie"
 require "mailsafe/change_subject_interceptor"
 require "mailsafe/reroute_interceptor"
-require "mailsafe/receipient_whitelist"
+require "mailsafe/recipient_whitelist"
 
 module Mailsafe
   def self.setup
