@@ -27,6 +27,21 @@ module Mailsafe
           expect(subject.bcc).to eq ["bcc@gmail.com"]
         end
       end
+
+      context "uninitialized receivers" do
+        subject { Mail.new() }
+
+        before do
+          Mailsafe.allowed_domain = "gmail.com" 
+          RecipientWhitelist.new(subject).filter_recipient_domains
+        end
+
+        it "Regression: and does not crash" do
+          expect(subject.to).to eq nil
+          expect(subject.cc).to eq nil
+          expect(subject.bcc).to eq nil
+        end
+      end
     end
     
     describe "#email_has_domain" do
