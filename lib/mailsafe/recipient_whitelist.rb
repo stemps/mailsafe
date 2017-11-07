@@ -37,16 +37,16 @@ module Mailsafe
     end
   end
 
+  module DeliverWithRecipientFilter
+    def deliver
+      Mailsafe::RecipientWhitelist.new(self).filter_recipient_domains
+      super unless self.to.blank? || self.to.empty?
+    end
+  end
 end
 
-# Unfortunately, monkeypatching Mail is the only way I found to actually prevent sending an email 
 require 'mail'
 
 class Mail::Message
-  def deliver_with_recipient_filter
-    Mailsafe::RecipientWhitelist.new(self).filter_recipient_domains
-    self.deliver_without_recipient_filter unless self.to.blank? || self.to.empty?
-  end
-
-  alias_method_chain :deliver, :recipient_filter
+  prepend Mailsafe::DeliverWithRecipientFilter
 end
