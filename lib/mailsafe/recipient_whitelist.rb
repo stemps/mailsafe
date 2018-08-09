@@ -17,6 +17,8 @@ module Mailsafe
       receivers = @message.send(rec_type)
       return unless receivers
 
+      receivers = [receivers] unless receivers.is_a?(Array)
+
       receivers.select! { |recipient| email_has_domain?(recipient) }
       @message.send("#{rec_type}=", receivers)
     end
