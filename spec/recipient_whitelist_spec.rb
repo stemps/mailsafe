@@ -43,6 +43,29 @@ module Mailsafe
       end
     end
     
+    describe "#filter_receipient_type" do
+      let(:to)   { ["berta@gmail.com", "bert@gmx.de"] }
+      let(:mail) { double("Mail", to: to) }
+      subject    { RecipientWhitelist.new(mail) }
+      before     { Mailsafe.allowed_domain = "gmail.com" }
+
+      it "rejects unallowed recipients" do
+        expect(mail).to receive("to=").and_return(["berta@gmail.com"])
+
+        subject.send(:filter_receipient_type, :to)
+      end
+
+      context "receipients is a string" do
+        let(:to) { "berta@gmail.com" }
+
+        it "rejects unallowed recipients" do
+          expect(mail).to receive("to=").and_return(["berta@gmail.com"])
+
+          subject.send(:filter_receipient_type, :to)
+        end
+      end
+    end
+
     describe "#email_has_domain" do
       before { Mailsafe.allowed_domain = whitelist }
       subject { RecipientWhitelist.new(double) }
